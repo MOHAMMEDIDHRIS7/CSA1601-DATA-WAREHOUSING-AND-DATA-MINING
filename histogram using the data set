@@ -1,0 +1,8 @@
+library(ggplot2)
+prices <- c(1, 1, 5, 5, 5, 5, 5, 8, 8, 10, 10, 10, 10, 12, 14, 14, 14, 15, 15, 15, 15, 15, 15, 18, 18, 18, 18, 18)
+bins <- cut(prices, breaks = quantile(prices, probs = seq(0, 1, length.out = 4)), include.lowest = TRUE)
+bin_means <- tapply(prices, bins, mean)
+ggplot(data.frame(prices), aes(x = prices)) +
+  geom_histogram(binwidth = 1, fill = "blue", color = "black", alpha = 0.7) +
+  labs(title = "Histogram of All Electronics Prices", x = "Price", y = "Frequency") +
+  theme_minimal()
